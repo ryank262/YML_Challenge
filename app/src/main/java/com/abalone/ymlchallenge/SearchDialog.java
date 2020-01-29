@@ -53,6 +53,7 @@ public class SearchDialog extends DialogFragment {
 
         /* Bind the EditText */
         username_txt = view.findViewById(R.id.username_editTxt);
+        username_txt.setText("mitchtabian");
 
         return builder.create();
     }

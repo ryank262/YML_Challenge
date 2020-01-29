@@ -3,18 +3,23 @@ package com.abalone.ymlchallenge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.abalone.ymlchallenge.adapters.AvatarGalleryAdapter;
+import com.abalone.ymlchallenge.model.Profile;
 import com.abalone.ymlchallenge.viewmodels.MainActivityViewModel;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SearchDialog.SearchDialogListener {
 
@@ -38,9 +43,14 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
 
         /* Initialize ViewModel */
         mMainActivityViewModel = new ViewModelProvider(MainActivity.this).get(MainActivityViewModel.class);
+        mMainActivityViewModel.init(getCacheDir());
+        mMainActivityViewModel.getProfiles().observe(this, new Observer<List<Profile>>() {
+            @Override
+            public void onChanged(List<Profile> profiles) {
+                avatars_adapter.setProfiles(profiles);
+            }
+        });
         initRecyclerView();
-
-
     }
 
     /* Add search to the action bar */
@@ -64,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
 
     @Override
     public void onDialogSearchClick(DialogFragment dialog, String username){
-        Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
+        mMainActivityViewModel.searchProfilesApi(username);
         setTitle("Home: " + username);
         dialog.dismiss();
     }
@@ -80,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
     }
 
     private void initRecyclerView(){
-        avatars_adapter = new AvatarGalleryAdapter(mMainActivityViewModel.getProfiles());
+        avatars_adapter = new AvatarGalleryAdapter(mMainActivityViewModel.getProfiles().getValue());
         avatars_recycler_view.setLayoutManager(new GridLayoutManager(this, NUM_COLUMNS));
         avatars_recycler_view.setAdapter(avatars_adapter);
     }

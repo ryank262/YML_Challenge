@@ -41,6 +41,11 @@ public class AvatarGalleryAdapter extends RecyclerView.Adapter<RecyclerView.View
         return profiles.size();
     }
 
+    public void setProfiles(List<Profile> profiles){
+        this.profiles = profiles;
+        notifyDataSetChanged();
+    }
+
     private class ViewHolder extends RecyclerView.ViewHolder{
 
         private CircleImageView avatar_image;
