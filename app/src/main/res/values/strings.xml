@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">YMLChallenge</string>
+    <string name="search_title">Git Username</string>
+    <string name="dialog_instructions">Enter Git Username</string>
+    <string name="search">Search</string>
+    <string name="cancel">Cancel</string>
+</resources>
