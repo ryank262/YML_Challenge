@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
     }
 
     private void initRecyclerView(){
-        avatars_adapter = new AvatarGalleryAdapter(mMainActivityViewModel.getProfiles().getValue());
+        avatars_adapter = new AvatarGalleryAdapter(this, mMainActivityViewModel.getProfiles().getValue());
         avatars_recycler_view.setLayoutManager(new GridLayoutManager(this, NUM_COLUMNS));
         avatars_recycler_view.setAdapter(avatars_adapter);
     }

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserDetailActivity">
+
+    <ImageView
+        android:id="@+id/blurred_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@android:color/black"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/guidle56"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></ImageView>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/blur"
+        app:layout_constraintBottom_toTopOf="@+id/guidle56"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/detail_avatar_image"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/img_avatar2"
+        app:layout_constraintBottom_toTopOf="@+id/guidle56"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidle56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".56" />
+
+    <TextView
+        android:id="@+id/username_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-black"
+        android:text="ryank262"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/detail_avatar_image"
+        app:layout_constraintStart_toStartOf="@+id/detail_avatar_image"
+        app:layout_constraintTop_toBottomOf="@+id/detail_avatar_image" />
+
+    <TextView
+        android:id="@+id/fullname_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ryan Kirkpatrick"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/username_txt"
+        app:layout_constraintStart_toStartOf="@+id/username_txt"
+        app:layout_constraintTop_toBottomOf="@+id/username_txt" />
+
+    <TextView
+        android:id="@+id/following_cnt_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="19"
+        android:textColor="@android:color/white"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidle56"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullname_text"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
+        android:id="@+id/followers_cnt_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="14"
+        android:textColor="@android:color/white"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="@+id/following_cnt_txt"
+        app:layout_constraintEnd_toStartOf="@+id/following_cnt_txt"
+        app:layout_constraintHorizontal_bias="0.60"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/following_cnt_txt" />
+
+    <TextView
+        android:id="@+id/repositories_cnt_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="37"
+        android:textColor="@android:color/white"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="@+id/following_cnt_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/following_cnt_txt"
+        app:layout_constraintTop_toTopOf="@+id/following_cnt_txt"
+        app:layout_constraintHorizontal_bias="0.40"/>
+
+    <TextView
+        android:id="@+id/followers_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/followers_txt"
+        android:textSize="10sp"
+        android:textColor="@color/light_grey_txt"
+        app:layout_constraintEnd_toEndOf="@+id/followers_cnt_txt"
+        app:layout_constraintStart_toStartOf="@+id/followers_cnt_txt"
+        app:layout_constraintTop_toBottomOf="@+id/followers_cnt_txt" />
+
+    <TextView
+        android:id="@+id/following_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="@color/light_grey_txt"
+        android:text="@string/following_txt"
+        app:layout_constraintEnd_toEndOf="@+id/following_cnt_txt"
+        app:layout_constraintStart_toStartOf="@+id/following_cnt_txt"
+        app:layout_constraintTop_toBottomOf="@+id/following_cnt_txt" />
+
+    <TextView
+        android:id="@+id/repositories_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="@color/light_grey_txt"
+        android:text="@string/repositories_txt"
+        app:layout_constraintEnd_toEndOf="@+id/repositories_cnt_txt"
+        app:layout_constraintStart_toStartOf="@+id/repositories_cnt_txt"
+        app:layout_constraintTop_toBottomOf="@+id/repositories_cnt_txt" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidle56"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/bio_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/info_icon_24dp">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/bio_txt"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="88"
+                    android:layout_height="wrap_content"
+                    android:text="Android Guy Ry">
+                </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/company_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="12"
+                android:layout_height="wrap_content"
+                android:src="@drawable/company_icon_24dp">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/company_txt"
+                android:layout_width="0dp"
+                android:layout_weight="88"
+                android:layout_height="wrap_content"
+                android:text="Abalone Apps">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="12"
+                android:layout_height="wrap_content"
+                android:src="@drawable/location_icon_24dp">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/location_txt"
+                android:layout_width="0dp"
+                android:layout_weight="88"
+                android:layout_height="wrap_content"
+                android:text="San Diego">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="12"
+                android:layout_height="wrap_content"
+                android:src="@drawable/email_icon_24dp">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/email_txt"
+                android:layout_width="0dp"
+                android:layout_weight="88"
+                android:layout_height="wrap_content"
+                android:text="Abalone Apps">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

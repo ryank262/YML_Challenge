@@ -4,4 +4,7 @@
     <string name="dialog_instructions">Enter Git Username</string>
     <string name="search">Search</string>
     <string name="cancel">Cancel</string>
+    <string name="followers_txt">FOLLOWERS</string>
+    <string name="following_txt">FOLLOWING</string>
+    <string name="repositories_txt">REPOSITORIES</string>
 </resources>
