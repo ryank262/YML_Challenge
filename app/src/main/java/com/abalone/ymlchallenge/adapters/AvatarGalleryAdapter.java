@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.abalone.ymlchallenge.R;
 import com.abalone.ymlchallenge.model.Profile;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -32,8 +34,16 @@ public class AvatarGalleryAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+        RequestOptions requestOptions = new RequestOptions()
+                .placeholder(R.drawable.img_avatar2);
+
+        Glide.with(holder.itemView.getContext())
+                .setDefaultRequestOptions(requestOptions)
+                .load(profiles.get(position).getAvatarUrl())
+                .into(((ViewHolder)holder).avatar_image);
+
         ((ViewHolder)holder).username_txt.setText(profiles.get(position).getUsername());
-        ((ViewHolder)holder).avatar_image.setImageResource(R.drawable.img_avatar2);
     }
 
     @Override

@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.abalone.ymlchallenge.adapters.AvatarGalleryAdapter;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
 
     /* UI Elements */
     private RecyclerView avatars_recycler_view;
+    private ProgressBar progressBar;
 
     private AvatarGalleryAdapter avatars_adapter;
     private MainActivityViewModel mMainActivityViewModel;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
 
         /* Bind UI */
         avatars_recycler_view = findViewById(R.id.avatars_recycler_view);
+        progressBar = findViewById(R.id.progressBar);
         setTitle("Home");
 
         /* Initialize ViewModel */
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
             @Override
             public void onChanged(List<Profile> profiles) {
                 avatars_adapter.setProfiles(profiles);
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
         initRecyclerView();
@@ -74,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
 
     @Override
     public void onDialogSearchClick(DialogFragment dialog, String username){
+        progressBar.setVisibility(View.VISIBLE);
         mMainActivityViewModel.searchProfilesApi(username);
         setTitle("Home: " + username);
         dialog.dismiss();
