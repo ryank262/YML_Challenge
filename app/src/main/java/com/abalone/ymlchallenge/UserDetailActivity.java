@@ -4,14 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.graphics.BlurMaskFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.abalone.ymlchallenge.adapters.AvatarGalleryAdapter;
 import com.abalone.ymlchallenge.model.User;
 import com.abalone.ymlchallenge.viewmodels.UserDetailViewModel;
 import com.bumptech.glide.Glide;
@@ -70,6 +68,14 @@ public class UserDetailActivity extends AppCompatActivity {
         location_layout.setVisibility(View.GONE);
         email_layout.setVisibility(View.GONE);
 
+        /* Shared Element Transition */
+        String transName = getIntent().getStringExtra("transition_name");
+        avatar.setTransitionName(transName);
+        String avatarUrl = getIntent().getStringExtra("avatar_url");
+        Glide.with(this)
+                .load(avatarUrl)
+                .into(avatar);
+
         /* Initialize ViewModel */
         mUserDetailViewModel = new ViewModelProvider(UserDetailActivity.this).get(UserDetailViewModel.class);
         mUserDetailViewModel.getUserInfo(getIntent().getStringExtra("username")).observe(this, new Observer<User>() {
@@ -102,14 +108,8 @@ public class UserDetailActivity extends AppCompatActivity {
         String email = user.getEmail();
         String avatar_url = user.getAvatar_url();
 
-        /* Set the avatar */
+        /* Set the background avatar */
         RequestOptions requestOptions = new RequestOptions();
-                //.placeholder(R.drawable.img_avatar2);
-
-        Glide.with(this)
-                .setDefaultRequestOptions(requestOptions)
-                .load(avatar_url)
-                .into(avatar);
 
         Glide.with(this)
                 .setDefaultRequestOptions(requestOptions)

@@ -1,5 +1,6 @@
 package com.abalone.ymlchallenge.model;
 
+/* Class representing a github follower */
 public class Profile {
 
     private String avatarUrl;

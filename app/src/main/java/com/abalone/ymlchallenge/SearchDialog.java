@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -53,7 +52,6 @@ public class SearchDialog extends DialogFragment {
 
         /* Bind the EditText */
         username_txt = view.findViewById(R.id.username_editTxt);
-        username_txt.setText("mitchtabian");
 
         return builder.create();
     }

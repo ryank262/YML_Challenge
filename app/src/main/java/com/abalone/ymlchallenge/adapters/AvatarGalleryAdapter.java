@@ -1,5 +1,6 @@
 package com.abalone.ymlchallenge.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abalone.ymlchallenge.R;
@@ -48,6 +51,9 @@ public class AvatarGalleryAdapter extends RecyclerView.Adapter<RecyclerView.View
                 .load(profiles.get(position).getAvatarUrl())
                 .into(((ViewHolder)holder).avatar_image);
 
+        //Needs unique transition name so use profile username
+        ViewCompat.setTransitionName(((ViewHolder) holder).avatar_image, profiles.get(position).getUsername());
+
         ((ViewHolder)holder).username_txt.setText(profiles.get(position).getUsername());
     }
 
@@ -84,7 +90,13 @@ public class AvatarGalleryAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             Intent intent = new Intent(ctx, UserDetailActivity.class);
             intent.putExtra("username", profiles.get(position).getUsername());
-            ctx.startActivity(intent);
+            intent.putExtra("transition_name", ViewCompat.getTransitionName(avatar_image));
+            intent.putExtra("avatar_url", profiles.get(position).getAvatarUrl());
+
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    (Activity) ctx, avatar_image, ViewCompat.getTransitionName(avatar_image));
+
+            ctx.startActivity(intent, options.toBundle());
         }
 
     }

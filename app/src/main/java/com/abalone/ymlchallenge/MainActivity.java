@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.abalone.ymlchallenge.adapters.AvatarGalleryAdapter;
 import com.abalone.ymlchallenge.model.Profile;
@@ -97,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
 
     @Override
     public void onDialogSearchClick(DialogFragment dialog, String username){
+        error_txt.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         mMainActivityViewModel.searchProfilesApi(username);
         setTitle("Home: " + username);

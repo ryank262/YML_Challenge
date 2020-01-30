@@ -57,8 +57,6 @@ public class ProfileApiClient {
 
     private ProfileApiClient() {
         profiles = new MutableLiveData<>();
-        //Initially set the data as empty
-        //profiles.setValue(new ArrayList<Profile>());
     }
 
     public LiveData<List<Profile>> getProfiles(){
