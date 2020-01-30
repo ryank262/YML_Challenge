@@ -84,7 +84,14 @@ public class UserDetailActivity extends AppCompatActivity {
 
     private void setUI(User user) {
         username_txt.setText(user.getUsername());
-        full_name_txt.setText(user.getFull_name());
+
+        /* Name can be "null" */
+        if(isNull(user.getFull_name())){
+            full_name_txt.setText("");
+        }else{
+            full_name_txt.setText(user.getFull_name());
+        }
+
         followers_cnt_txt.setText(Integer.toString(user.getFollowers()));
         following_cnt_txt.setText(Integer.toString(user.getFollowing()));
         repositories_cnt_txt.setText(Integer.toString(user.getRepositories()));
@@ -96,8 +103,8 @@ public class UserDetailActivity extends AppCompatActivity {
         String avatar_url = user.getAvatar_url();
 
         /* Set the avatar */
-        RequestOptions requestOptions = new RequestOptions()
-                .placeholder(R.drawable.img_avatar2);
+        RequestOptions requestOptions = new RequestOptions();
+                //.placeholder(R.drawable.img_avatar2);
 
         Glide.with(this)
                 .setDefaultRequestOptions(requestOptions)

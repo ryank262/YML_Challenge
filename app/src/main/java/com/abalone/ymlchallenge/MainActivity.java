@@ -15,12 +15,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abalone.ymlchallenge.adapters.AvatarGalleryAdapter;
 import com.abalone.ymlchallenge.model.Profile;
 import com.abalone.ymlchallenge.viewmodels.MainActivityViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SearchDialog.SearchDialogListener {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
     /* UI Elements */
     private RecyclerView avatars_recycler_view;
     private ProgressBar progressBar;
+    private TextView error_txt;
 
     private AvatarGalleryAdapter avatars_adapter;
     private MainActivityViewModel mMainActivityViewModel;
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
         /* Bind UI */
         avatars_recycler_view = findViewById(R.id.avatars_recycler_view);
         progressBar = findViewById(R.id.progressBar);
+        error_txt = findViewById(R.id.error_txt);
         setTitle("Home");
 
         /* Initialize ViewModel */
@@ -51,7 +55,21 @@ public class MainActivity extends AppCompatActivity implements SearchDialog.Sear
         mMainActivityViewModel.getProfiles().observe(this, new Observer<List<Profile>>() {
             @Override
             public void onChanged(List<Profile> profiles) {
-                avatars_adapter.setProfiles(profiles);
+                if(profiles == null){
+                    //User not found
+                    avatars_adapter.setProfiles(new ArrayList<Profile>()); //Pass empty list
+                    error_txt.setText(R.string.user_not_found);
+                    error_txt.setVisibility(View.VISIBLE);
+                }else if(profiles.size() == 0){
+                    //User has no followers
+                    avatars_adapter.setProfiles(profiles);
+                    error_txt.setText(R.string.no_followers);
+                    error_txt.setVisibility(View.VISIBLE);
+                }else{
+                    avatars_adapter.setProfiles(profiles);
+                    error_txt.setVisibility(View.INVISIBLE);
+
+                }
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });

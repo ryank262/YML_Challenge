@@ -53,7 +53,11 @@ public class AvatarGalleryAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        return profiles.size();
+        if(profiles == null){
+            return 0;
+        }else{
+            return profiles.size();
+        }
     }
 
     public void setProfiles(List<Profile> profiles){

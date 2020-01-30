@@ -58,7 +58,7 @@ public class ProfileApiClient {
     private ProfileApiClient() {
         profiles = new MutableLiveData<>();
         //Initially set the data as empty
-        profiles.setValue(new ArrayList<Profile>());
+        //profiles.setValue(new ArrayList<Profile>());
     }
 
     public LiveData<List<Profile>> getProfiles(){
@@ -77,7 +77,7 @@ public class ProfileApiClient {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //Handle error
+                        profiles.setValue(null);
                     }
                 });
         requestQueue.add(request);
@@ -147,7 +147,7 @@ public class ProfileApiClient {
                 newProfiles.add(new Profile(avatarUrl, login));
             }
         }catch (JSONException e){
-            //TODO Handle exception
+            return null;
         }
 
         return newProfiles;

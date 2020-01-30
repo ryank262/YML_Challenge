@@ -7,4 +7,6 @@
     <string name="followers_txt">FOLLOWERS</string>
     <string name="following_txt">FOLLOWING</string>
     <string name="repositories_txt">REPOSITORIES</string>
+    <string name="user_not_found">User not found</string>
+    <string name="no_followers">User has no followers</string>
 </resources>
